@@ -52,3 +52,17 @@ jar {
     from configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
 
 }
+
+tasks.register('copyJar', Copy) {
+        from './build/libs/app.jar'
+        into '.'
+        rename 'app.jar', "myname.jar"
+}
+
+jar.finalizedBy copyJar
+//copyJar.dependsOn jar
+//tasks.jar.finalizedBy(copyJar)
+
+
+
+
